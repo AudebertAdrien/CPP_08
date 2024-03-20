@@ -6,7 +6,7 @@
 #    By: motoko <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 14:26:47 by motoko            #+#    #+#              #
-#    Updated: 2024/03/14 16:40:01 by motoko           ###   ########.fr        #
+#    Updated: 2024/03/20 15:30:06 by motoko           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,11 @@ SRCS			:= main.cpp		\
 
 CC				:= c++
 CFLAGS			:= -Wall -Wextra 
+
+#Colors:
+GREEN		=	\e[92;5m
+YELLOW		=	\e[93m
+RESET		=	\e[0m
 
 #Debug 
 ifeq ($(DEBUG), 1)
@@ -41,20 +46,23 @@ OBJS			:= $(addprefix $(OBJS_DIR)/, $(SRCS:.cpp=.o))
 all:	$(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $(OBJS) -o $@	
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $(OBJS) -o $@	
+	@printf "$(GREEN)- Executable ready.\n$(RESET)"
 
 $(OBJS_DIR)/%.o: %.cpp | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
 
 $(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)
 
 clean:
-	$(RM) $(OBJS)
-	$(RM) $(OBJS_DIR)
+	@$(RM) $(OBJS)
+	@$(RM) $(OBJS_DIR)
+	@printf "$(YELLOW)    - Object files removed.$(RESET)\n"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
 
 re: fclean all
 
