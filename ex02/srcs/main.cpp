@@ -6,7 +6,7 @@
 /*   By: motoko <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:23:29 by motoko            #+#    #+#             */
-/*   Updated: 2024/03/22 16:06:12 by motoko           ###   ########.fr       */
+/*   Updated: 2024/03/25 13:21:55 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,15 @@ int main( void )
 	mstack.push(0);
 	
 	MutantStack<int>::iterator it = mstack.begin();
-	//MutantStack<int>::iterator ite = mstack.end();
-	/*
-	++it;
-	--it;
+	MutantStack<int>::iterator ite = mstack.end();
+	it++;
+	it--;
 	while (it != ite)
 	{
 		std::cout << *it << std::endl;
 		++it;
 	}
 	std::stack<int> s(mstack);
-	*/
+
 	return EXIT_SUCCESS;
 }
